@@ -9,8 +9,14 @@ An reference app with two micro-services plus mysql on Docker, Openshift and AWS
 	   
 	Service mesh:
 	   istio on oenshfift and AWS Service Mesh on AWS
+	
 	API Gateway:
 	   3 Scale on openshift and AWS API Gateway on AWS
+	   
+	Configiration
+	   config map on openshift, Parameter store/System Manager on AWS
+	Secrect:
+	   Secrest on openshift, AWS Secrets Manager/System Manager on AWS
 	
 	
 	

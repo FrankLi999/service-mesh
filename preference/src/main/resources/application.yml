@@ -1,0 +1,36 @@
+recommendations:
+  api:
+    url: "http://recommendation:8080"
+endpoints:
+  health:
+    enabled: false
+management:
+  endpoints:
+    #shutdown:
+    #  enabled: true
+    #health:
+    #  show-details: always
+    web:
+      exposure:
+        include: "*"
+  #endpoint:        
+    #metrics:
+      #enabled: true
+    #prometheus:
+      #enabled: true
+  #metrics:
+    #export:
+      #prometheus:
+        #enabled: true    
+opentracing:
+  jaeger:
+    http-sender:
+      #url: "http://jaeger-all-in-one-inmemory-collector.jaeger:14268/api/traces"
+      #url: "http://jaeger-all-in-one-inmemory-collector-headless.jaeger:14268/api/traces"
+      url: "http://jaeger-all-in-one-inmemory-collector-headless.jaegers:14268/api/traces"
+      username: kubeadmin
+      password: "cznQP-n4pBk-cnXTg-nkevH"
+      #authtoken: token
+    log-spans: true
+    service-name: openshift-demo
+    enable-b3-propagation: true

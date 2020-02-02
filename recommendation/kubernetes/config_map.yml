@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: recommendation
+  namespace: wcm-bpm
+data:
+  #application.properties: |-
+    # test.property=
+  application.yaml: |-
+    test:
+      property: test_prop_value

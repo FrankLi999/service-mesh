@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: currency-exchange-microservice
+  jpa:
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+server:
+  port: 8000
+  servlet:
+    context-path: "/api/currency-exchange-microservice"
+
+management:
+  endpoints:
+    web:
+      base-path: "/manage"

@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: currency-conversion-microservice
+    
+server:
+  port: 8100
+  servlet:
+    context-path: "/api/currency-conversion-microservice"
+
+management:
+  endpoints:
+    web:
+      base-path: "/manage"

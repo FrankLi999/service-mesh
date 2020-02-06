@@ -2,18 +2,26 @@
 https://github.com/in28minutes/deploy-spring-microservices-to-aws-ecs-fargate
 ## create docker images
     docker login
+    docker network ls
+    docker network create currency
+    docker network inspect currency
     cd xli9999/aws-currency-exchange-service-h2-xray
     mvn clean package
-    docker container run --publish 8000:8000 xli9999/aws-currency-exchange-service-h2-xray:0.0.1-SNAPSHOT
+    
+    docker container run --name currency-exchange  --publish 8000:8000 --network currency xli9999/aws-currency-exchange-service-h2-xray:0.0.1-SNAPSHOT
+    
     docker push xli9999/aws-currency-exchange-service-h2-xray:0.0.1-SNAPSHOT
 
     curl http://localhost:8000/api/currency-exchange-microservice/currency-exchange/from/EUR/to/INR
     
     cd aws-currency-conversion-service-xray
     mvn clean package
-    docker container run --publish 8100:8100 xli9999/aws-currency-conversion-service-xray:0.0.1-SNAPSHOT
+    
+    docker container run --name currency-conversion --publish 8100:8100 --network currency -env CURRENCY_EXCHANGE_URI=http://currency-exchange:8000 xli9999/aws-currency-conversion-service-xray:0.0.1-SNAPSHOT
+
     docker push xli9999/aws-currency-conversion-service-xray:0.0.1-SNAPSHOT
     curl http://localhost:8100/api/currency-conversion-microservice/currency-converter/from/EUR/to/INR/quantity/75
+
 ## Get started with ECS with Fargate
   (two container can be packed into one task defintion, ECS_CONTAINER_METADATA_URI, the uri to query for container metadata)
   ECS get start -> choose sample-app
@@ -53,3 +61,11 @@ https://github.com/in28minutes/deploy-spring-microservices-to-aws-ecs-fargate
 
 ## User ESC to run batch programs
    use "Run new task"
+
+## MySQL support
+  env vars:
+    RDS_HOSTNAME
+    RDS_PORT
+    RDS_DB_NAME
+    RDS_USERNAME
+    RDS_PASSWORD
